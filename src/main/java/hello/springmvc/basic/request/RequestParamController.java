@@ -25,5 +25,5 @@ public class RequestParamController {
         log.info("username={}, age={}", username, age);
 
         response.getWriter().write("ok");
-    가
+    }
 }
