@@ -38,12 +38,11 @@ public class RequestBodyJsonController {
     }
 
     /**
-     * @RequestBody
-     * HttpMessageConverter 사용 -> StringHttpMessageConverter 적용 *
-     * @ResponseBody
-     * - 모든 메서드에 @ResponseBody 적용
+     * @RequestBody HttpMessageConverter 사용 -> StringHttpMessageConverter 적용 *
+     * @ResponseBody - 모든 메서드에 @ResponseBody 적용
      * - 메시지 바디 정보 직접 반환(view 조회X)
-     * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용 */
+     * - HttpMessageConverter 사용 -> StringHttpMessageConverter 적용
+     */
     @ResponseBody
     @PostMapping("/request-body-json-v2")
     public String requestBodyJsonV2(@RequestBody String messageBody) throws
@@ -52,5 +51,19 @@ public class RequestBodyJsonController {
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return "ok";
     }
+
+
+    /**
+     * @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
+     * HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (content-
+     * type: application/json)
+     */
+    @ResponseBody
+    @PostMapping("/request-body-json-v3")
+    public String requestBodyJsonV3(@RequestBody HelloData data) {
+        log.info("username={}, age={}", data.getUsername(), data.getAge());
+        return "ok";
+    }
+
 
 }
