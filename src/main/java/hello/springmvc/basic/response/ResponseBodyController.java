@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @Slf4j
 @Controller
+@ResponseBody
 public class ResponseBodyController {
 
     @GetMapping("/response-body-string-v1")
@@ -30,7 +31,7 @@ public class ResponseBodyController {
         return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
-    @ResponseBody
+//    @ResponseBody
     @GetMapping("/response-body-string-v3")
     public String responseBodyV3() {
         return "ok";
@@ -46,7 +47,7 @@ public class ResponseBodyController {
     }
 
     @ResponseStatus(HttpStatus.OK)  //json-v1 ResponseEntity 에서는 상태코드 가능했는데 객체로 Return 하게 되면 상태코드 입력 못하므로..
-    @ResponseBody
+//    @ResponseBody
     @GetMapping("/response-body-json-v2")
     public HelloData responseBodyJsonV2() {
         HelloData helloData = new HelloData();
