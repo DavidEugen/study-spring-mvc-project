@@ -132,7 +132,7 @@ public class RequestParamController {
      * 참고: model.addAttribute(helloData) 코드도 함께 자동 적용됨, 뒤에 model을 설명할 때 자세히 설명
      */
     @ResponseBody
-    @RequestMapping("/model-attribute-v1")
+    @RequestMapping("/model-attribute-v0")
     public String modelAttributeV0(String username, int age) {
         HelloData helloData = new HelloData();
         helloData.setUsername(username);
