@@ -93,4 +93,53 @@ public class MappingController {
         log.info("mappingHeader");
         return "ok";
     }
+
+
+    /**
+     * Content-Type : 클라이언트가 보내는 Request의 데이터 타입
+     * Accept : 클라이언트가 받아 들이는 Response의 데이터 타입
+     * Content-Type, Accept 둘다 자동으로 생성 한다.
+     *
+     * 테스트 : POSTMAN으로 이용,
+     * Content-Type 은 request Body 형식을 바꿔 본다.
+     * Accept는 클라이언트가 자동으로 생성하므로 강제로 지정 해 본다. 보통 *\/* 이지 않을까?
+     */
+
+    /**
+     * Content-Type 헤더 기반 추가 매핑 Media Type
+     * consumes="application/json"
+     * consumes="!application/json"
+     * consumes="application/*"
+     * consumes="*\/*"
+     * consumes={"text/plain", "application/*"}
+     * consumes=MediaType.APPLICATION_JSON_VALUE
+     * 만약 맞지 않으면 HTTP 415 상태코드(Unsupported Media Type)을 반환
+     * Request 정보를 서버가 소비하니깐 consumes
+     * header 정보를 보고 서버가 받아 들일 수 있는 타입만 핸들러가 처리한다.
+     */
+    @PostMapping(value = "/mapping-consume", consumes = "application/json")
+    public String mappingConsumes() {
+        log.info("mappingConsumes");
+        return "ok";
+    }
+
+    /**
+     * Accept 헤더 기반 Media Type
+     * produces = "text/html"
+     * produces = "!text/html"
+     * produces = "text/*"
+     * produces = "*\/*"
+     * produces = {"text/plain", "application/*"}
+     * produces = MediaType.TEXT_PLAIN_VALUE
+     * produces = "text/plain;charset=UTF-8"
+     * 만약 맞지 않으면 HTTP 406 상태코드(Not Acceptable)을 반환
+     * Response 정보를 서버가 생산하니깐 produces
+     * header 정보를 보고 클라이언트가 해결 할 수 있는 타입의 응답만 핸들러가 처리한다..
+     */
+    @PostMapping(value = "/mapping-produce", produces = "text/html")
+    public String mappingProduces() {
+        log.info("mappingProduces");
+        return "ok";
+    }
+
 }
