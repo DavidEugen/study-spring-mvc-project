@@ -2,6 +2,7 @@ package hello.springmvc.basic.request;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -111,8 +112,16 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/request-param-map")
     public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
-        log.info("username={}, age={}", paramMap.get("username"),
-                paramMap.get("age"));
+        log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
+
+        //username=hello&age=20&username=hello2
+
+        // MultiValueMap<String, Object> paramMap 경우
+        //username=[hello, hello2], age=[20]
+
+        // Map<String, Object> paramMap 경우
+        // username=hello, age=20
+
         return "ok";
     }
 
