@@ -67,4 +67,18 @@ public class MappingController {
         return "ok";
     }
 
+    /**
+     * 파라미터로 추가 매핑
+     * params="mode", // 404 : mode 포함하지 않는 모든 경우
+     * params="!mode" // 404 : mode 포함하는 모든 경우
+     * params="mode=debug" // 404 : mode=debug 포함하지 않는 모든 경우
+     * params="mode!=debug" (! = ) // 404 : 없거나 mode 가 debug인 경우
+     * params = {"mode=debug","data=good"}
+     */
+    @GetMapping(value = "/mapping-param", params = "qq")
+    public String mappingParam() {
+        log.info("mappingParam");
+        return "ok";
+    }
+
 }
