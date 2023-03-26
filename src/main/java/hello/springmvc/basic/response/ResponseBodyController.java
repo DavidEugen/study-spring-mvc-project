@@ -49,7 +49,7 @@ public class ResponseBodyController {
     }
 
     @ResponseStatus(HttpStatus.OK)  //json-v1 ResponseEntity 에서는 상태코드 가능했는데 객체로 Return 하게 되면 상태코드 입력 못하므로..
-//    @ResponseBody
+    @ResponseBody
     @GetMapping("/response-body-json-v2")
     public HelloData responseBodyJsonV2() {
         HelloData helloData = new HelloData();
